@@ -93,7 +93,7 @@ function Hero() {
         </div>
 
         <h1 className="text-display text-[18vw] md:text-[13vw] leading-[0.85] break-words">
-          THUVA<span className="text-accent">·</span>RAKAN
+          Thuvarakan.
         </h1>
 
         <div className="mt-10 grid md:grid-cols-12 gap-8 items-end">
