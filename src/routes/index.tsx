@@ -1,6 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
+import emailjs from "@emailjs/browser";
+import { toast } from "sonner";
 import { ArrowUpRight, Mail, Linkedin, Phone, Circle } from "lucide-react";
+
+const EMAILJS_SERVICE_ID = "service_wh3smtp";
+const EMAILJS_TEMPLATE_ID = "template_40y5g5k";
+const EMAILJS_PUBLIC_KEY = "bQlsvw7kd0kI0nvnV";
 
 export const Route = createFileRoute("/")({
   component: Portfolio,
@@ -320,6 +326,34 @@ function Work() {
 
 function Contact() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [sending, setSending] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (sending) return;
+    setSending(true);
+    try {
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          from_name: form.name,
+          from_email: form.email,
+          message: form.message,
+          reply_to: form.email,
+        },
+        { publicKey: EMAILJS_PUBLIC_KEY },
+      );
+      toast.success("Message sent — I'll be in touch shortly.");
+      setForm({ name: "", email: "", message: "" });
+    } catch (err) {
+      console.error(err);
+      toast.error("Couldn't send message. Please try again or email me directly.");
+    } finally {
+      setSending(false);
+    }
+  };
+
   return (
     <section id="contact" className="px-6 md:px-10 py-24 md:py-32 border-t border-border">
       <div className="mx-auto max-w-[1400px] grid md:grid-cols-12 gap-12">
@@ -344,7 +378,7 @@ function Contact() {
         </div>
 
         <form
-          onSubmit={(e) => { e.preventDefault(); window.location.href = `mailto:Thuvarakan@Softpac.co?subject=Project from ${form.name}&body=${encodeURIComponent(form.message + "\n\n— " + form.name + " (" + form.email + ")")}`; }}
+          onSubmit={handleSubmit}
           className="md:col-span-6 space-y-6 p-8 rounded-3xl border border-border bg-card"
         >
           <Field label="Name" value={form.name} onChange={(v) => setForm({ ...form, name: v })} />
@@ -360,8 +394,8 @@ function Contact() {
               placeholder="Tell me about your project…"
             />
           </div>
-          <button className="w-full group inline-flex items-center justify-center gap-3 bg-foreground text-background px-6 py-5 rounded-full text-base font-medium hover:bg-accent hover:text-accent-foreground transition-colors">
-            Let's Work Together
+          <button type="submit" disabled={sending} className="w-full group inline-flex items-center justify-center gap-3 bg-foreground text-background px-6 py-5 rounded-full text-base font-medium hover:bg-accent hover:text-accent-foreground transition-colors disabled:opacity-60 disabled:cursor-not-allowed">
+            {sending ? "Sending…" : "Let's Work Together"}
             <ArrowUpRight className="w-5 h-5 group-hover:rotate-45 transition-transform" />
           </button>
         </form>
