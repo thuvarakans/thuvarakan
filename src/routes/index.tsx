@@ -337,10 +337,13 @@ function Contact() {
         EMAILJS_SERVICE_ID,
         EMAILJS_TEMPLATE_ID,
         {
+          name: form.name,
           from_name: form.name,
+          email: form.email,
           from_email: form.email,
-          message: form.message,
           reply_to: form.email,
+          user_email: form.email,
+          message: form.message,
         },
         { publicKey: EMAILJS_PUBLIC_KEY },
       );
