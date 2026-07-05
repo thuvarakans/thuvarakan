@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import emailjs from "@emailjs/browser";
 import { toast } from "sonner";
-import { ArrowUpRight, Mail, Linkedin, Phone, Circle } from "lucide-react";
+import { ArrowUpRight, Mail, Linkedin, MapPin, Circle } from "lucide-react";
 
 const EMAILJS_SERVICE_ID = "service_wh3smtp";
 const EMAILJS_TEMPLATE_ID = "template_40y5g5k";
@@ -375,7 +375,7 @@ function Contact() {
               <ArrowUpRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
             </a>
             <div className="flex items-center gap-3 text-lg text-muted-foreground">
-              <Phone className="w-5 h-5" /> Available worldwide · remote-first
+              <MapPin className="w-5 h-5" /> Colombo, Sri Lanka
             </div>
           </div>
         </div>
