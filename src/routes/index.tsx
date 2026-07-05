@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import emailjs from "@emailjs/browser";
 import { toast } from "sonner";
-import { ArrowUpRight, Mail, Linkedin, Phone, Circle } from "lucide-react";
+import { ArrowUpRight, Mail, Linkedin, MapPin, Circle } from "lucide-react";
 
 const EMAILJS_SERVICE_ID = "service_wh3smtp";
 const EMAILJS_TEMPLATE_ID = "template_40y5g5k";
