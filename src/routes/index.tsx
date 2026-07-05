@@ -326,6 +326,34 @@ function Work() {
 
 function Contact() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [sending, setSending] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (sending) return;
+    setSending(true);
+    try {
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          from_name: form.name,
+          from_email: form.email,
+          message: form.message,
+          reply_to: form.email,
+        },
+        { publicKey: EMAILJS_PUBLIC_KEY },
+      );
+      toast.success("Message sent — I'll be in touch shortly.");
+      setForm({ name: "", email: "", message: "" });
+    } catch (err) {
+      console.error(err);
+      toast.error("Couldn't send message. Please try again or email me directly.");
+    } finally {
+      setSending(false);
+    }
+  };
+
   return (
     <section id="contact" className="px-6 md:px-10 py-24 md:py-32 border-t border-border">
       <div className="mx-auto max-w-[1400px] grid md:grid-cols-12 gap-12">
@@ -350,7 +378,7 @@ function Contact() {
         </div>
 
         <form
-          onSubmit={(e) => { e.preventDefault(); window.location.href = `mailto:Thuvarakan@Softpac.co?subject=Project from ${form.name}&body=${encodeURIComponent(form.message + "\n\n— " + form.name + " (" + form.email + ")")}`; }}
+          onSubmit={handleSubmit}
           className="md:col-span-6 space-y-6 p-8 rounded-3xl border border-border bg-card"
         >
           <Field label="Name" value={form.name} onChange={(v) => setForm({ ...form, name: v })} />
