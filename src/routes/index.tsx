@@ -394,8 +394,8 @@ function Contact() {
               placeholder="Tell me about your project…"
             />
           </div>
-          <button className="w-full group inline-flex items-center justify-center gap-3 bg-foreground text-background px-6 py-5 rounded-full text-base font-medium hover:bg-accent hover:text-accent-foreground transition-colors">
-            Let's Work Together
+          <button type="submit" disabled={sending} className="w-full group inline-flex items-center justify-center gap-3 bg-foreground text-background px-6 py-5 rounded-full text-base font-medium hover:bg-accent hover:text-accent-foreground transition-colors disabled:opacity-60 disabled:cursor-not-allowed">
+            {sending ? "Sending…" : "Let's Work Together"}
             <ArrowUpRight className="w-5 h-5 group-hover:rotate-45 transition-transform" />
           </button>
         </form>
