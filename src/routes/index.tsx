@@ -39,8 +39,30 @@ const services = [
 ];
 
 const projects = [
-  { title: "ESCAPL Finance", cat: "Website Development", year: "2024", desc: "A mobile-first finance business site with social integration and newsletter capture — engineered for engagement and clarity.", tags: ["Web Dev", "UX", "SEO"] },
-  { title: "Decoroy Fashion", cat: "eCommerce Platform", year: "2024", desc: "A high-performance dropshipping fashion store with fast checkout, SEO-optimised architecture and mobile-first design.", tags: ["eCommerce", "SEO", "UX"] },
+  {
+    title: "BOOK DOWNLOAD SEO WORKS & WEBSITE DEVELOPMENT",
+    cat: "Website Development & SEO",
+    year: "2022",
+    desc: "900+ daily users, 93% organic traffic, average position 6. A WordPress book-download platform built and optimised with on-page and off-page SEO to drive sustained organic growth.",
+    tags: ["Web Dev", "UI", "UX", "SEO", "WordPress", "Onpage SEO", "Off Page SEO"],
+    cover: "https://softpac.co/wp-content/uploads/2025/04/Daily-Free-ebooks-Our-Works-1-min-1536x864.png",
+  },
+  {
+    title: "FASHION ECOMMERCE SEO & WEBSITE DEVELOPMENT",
+    cat: "eCommerce SEO",
+    year: "2025",
+    desc: "+52% clicks and +44% impressions within 4 months. A fashion eCommerce SEO project covering technical SEO, on-page optimisation, off-page strategy and full audits.",
+    tags: ["SEO", "Technical SEO", "Onpage SEO", "Offpage SEO", "SEO Audit"],
+    cover: "https://softpac.co/wp-content/uploads/2025/03/Decoroy-Our-Works-min-1536x864.png",
+  },
+  {
+    title: "ESCAPL FINANCE WEBSITE DEVELOPMENT",
+    cat: "Website Development",
+    year: "2024",
+    desc: "Launched in 5 days, under 2s load time, fully mobile-responsive. A fast, conversion-focused finance website built on WordPress with clean UX and UI.",
+    tags: ["Web Dev", "UX", "UI", "WordPress"],
+    cover: "https://softpac.co/wp-content/uploads/2025/04/ESCAPL-Our-Works-min-1536x864.png",
+  },
 ];
 
 function Portfolio() {
