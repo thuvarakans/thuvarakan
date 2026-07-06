@@ -4,6 +4,7 @@ import emailjs from "@emailjs/browser";
 import { toast } from "sonner";
 import { ArrowUpRight, Mail, Linkedin, MapPin, Circle } from "lucide-react";
 import { Cursor3D } from "@/components/Cursor3D";
+import { Hero3DText } from "@/components/Hero3DText";
 
 const EMAILJS_SERVICE_ID = "service_wh3smtp";
 const EMAILJS_TEMPLATE_ID = "template_40y5g5k";
@@ -100,9 +101,12 @@ function Hero() {
           </div>
         </div>
 
-        <h1 className="text-display text-[18vw] md:text-[13vw] leading-[0.85] break-words">
-          THUVARAKAN<span className="text-accent">·</span>
-        </h1>
+        <Hero3DText
+          text="THUVARAKAN"
+          accent="·"
+          className="text-display text-[18vw] md:text-[13vw] leading-[0.85] break-words select-none"
+        />
+
 
         <div className="mt-10 grid md:grid-cols-12 gap-8 items-end">
           <div className="md:col-span-7">
