@@ -45,20 +45,23 @@ export function Hero3DText({
         const cy = r.top + r.height / 2 - rect.top;
         const dx = current.current.x - cx;
         const dy = current.current.y - cy;
+        // Per-letter radius keeps effect strong regardless of container size
+        const radius = Math.max(r.width, r.height) * 2.2;
         const dist = Math.hypot(dx, dy);
-        const radius = Math.max(rect.width, 400) * 0.35;
         const falloff = Math.max(0, 1 - dist / radius) * current.current.active;
 
-        const rotY = (dx / radius) * 22 * falloff;
-        const rotX = (-dy / radius) * 22 * falloff;
-        const tz = falloff * 40;
-        const scale = 1 + falloff * 0.06;
+        // Strong, readable 3D tilt driven by cursor offset
+        const rotY = Math.max(-35, Math.min(35, (dx / (r.width * 0.6)) * 30 * falloff));
+        const rotX = Math.max(-35, Math.min(35, (-dy / (r.height * 0.6)) * 30 * falloff));
+        const tz = falloff * 90;
+        const scale = 1 + falloff * 0.12;
 
         el.style.transform =
           `translateZ(${tz.toFixed(2)}px) ` +
           `rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) ` +
           `scale(${scale.toFixed(3)})`;
       }
+
 
       if (
         Math.abs(target.current.x - current.current.x) > 0.5 ||
