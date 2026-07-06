@@ -324,7 +324,13 @@ function Work() {
           {projects.map((p, i) => (
             <article key={p.title} className="group grid md:grid-cols-12 gap-6 p-6 md:p-8 rounded-3xl border border-border hover:border-foreground transition-colors">
               <div className="md:col-span-5 aspect-[4/3] rounded-2xl bg-secondary overflow-hidden relative">
-                <div className={`absolute inset-0 ${i === 0 ? "bg-gradient-to-br from-accent/40 via-secondary to-foreground/20" : "bg-gradient-to-tr from-foreground/80 via-secondary to-accent/30"}`} />
+                <img
+                  src={p.cover}
+                  alt={p.title}
+                  className="absolute inset-0 w-full h-full object-cover"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent" />
                 <div className="absolute inset-0 flex items-end p-6">
                   <span className="text-5xl md:text-6xl font-display font-bold text-background mix-blend-difference">{p.title.split(" ")[0]}</span>
                 </div>
