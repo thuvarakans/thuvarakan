@@ -41,7 +41,7 @@ const services = [
 const projects = [
   {
     title: "BOOK DOWNLOAD SEO WORKS & WEBSITE DEVELOPMENT",
-    cat: "Website Development & SEO",
+    cat: "Web Dev & SEO",
     year: "2022",
     desc: "900+ daily users, 93% organic traffic, average position 6. A WordPress book-download platform built and optimised with on-page and off-page SEO to drive sustained organic growth.",
     tags: ["Web Dev", "UI", "UX", "SEO", "WordPress", "Onpage SEO", "Off Page SEO"],
