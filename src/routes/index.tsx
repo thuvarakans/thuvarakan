@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import emailjs from "@emailjs/browser";
 import { toast } from "sonner";
-import { ArrowUpRight, Mail, Linkedin, MapPin, Circle } from "lucide-react";
+import { ArrowUpRight, Mail, Linkedin, MapPin, Circle, X } from "lucide-react";
 import { Cursor3D } from "@/components/Cursor3D";
 import { Hero3DText } from "@/components/Hero3DText";
 
