@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import emailjs from "@emailjs/browser";
 import { toast } from "sonner";
-import { ArrowUpRight, Mail, Linkedin, MapPin, Circle } from "lucide-react";
+import { ArrowUpRight, Mail, Linkedin, MapPin, Circle, X } from "lucide-react";
 import { Cursor3D } from "@/components/Cursor3D";
 import { Hero3DText } from "@/components/Hero3DText";
 
@@ -315,13 +315,15 @@ function Services() {
 }
 
 function Work() {
+  const [popupOpen, setPopupOpen] = useState(false);
+
   return (
     <section id="work" className="px-6 md:px-10 py-24 md:py-32">
       <div className="mx-auto max-w-[1400px]">
         <SectionLabel n="05" label="Selected Work" />
         <h2 className="text-5xl md:text-7xl font-display font-bold mb-16 leading-none">Case<br/>studies<span className="text-accent">.</span></h2>
         <div className="space-y-6">
-          {projects.map((p, i) => (
+          {projects.map((p) => (
             <article key={p.title} className="group grid md:grid-cols-12 gap-6 p-6 md:p-8 rounded-3xl border border-border hover:border-foreground transition-colors">
               <div className="md:col-span-5 aspect-[4/3] rounded-2xl bg-secondary overflow-hidden relative">
                 <img
@@ -339,7 +341,10 @@ function Work() {
                 <div>
                   <div className="flex items-center justify-between mb-4">
                     <span className="text-xs font-mono uppercase tracking-widest text-muted-foreground">{p.cat} · {p.year}</span>
-                    <button className="group/btn inline-flex items-center gap-2 bg-foreground text-background px-4 py-2 rounded-full text-xs font-medium hover:bg-accent hover:text-accent-foreground transition-colors">
+                    <button
+                      onClick={() => setPopupOpen(true)}
+                      className="group/btn inline-flex items-center gap-2 bg-foreground text-background px-4 py-2 rounded-full text-xs font-medium hover:bg-accent hover:text-accent-foreground transition-colors"
+                    >
                       See Results
                       <ArrowUpRight className="w-4 h-4 group-hover/btn:rotate-45 transition-transform" />
                     </button>
@@ -357,6 +362,33 @@ function Work() {
           ))}
         </div>
       </div>
+
+      {popupOpen && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-background/80 backdrop-blur-md p-6"
+          onClick={() => setPopupOpen(false)}
+          role="dialog"
+          aria-modal="true"
+        >
+          <div
+            className="relative w-full max-w-4xl rounded-3xl border border-border bg-card p-12 md:p-20 shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={() => setPopupOpen(false)}
+              className="absolute top-6 right-6 p-3 rounded-full border border-border hover:bg-foreground hover:text-background transition-colors"
+              aria-label="Close"
+            >
+              <X className="w-5 h-5" />
+            </button>
+            <div className="text-center">
+              <span className="text-xs font-mono uppercase tracking-widest text-muted-foreground">Case Study</span>
+              <h3 className="mt-4 text-5xl md:text-7xl font-display font-bold">Coming Soon</h3>
+              <p className="mt-6 text-muted-foreground max-w-lg mx-auto">Detailed results, metrics and process breakdowns are being prepared for this project.</p>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
