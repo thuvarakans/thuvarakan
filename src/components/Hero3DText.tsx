@@ -1,9 +1,9 @@
 import { useRef, type ReactNode } from "react";
 
 /**
- * Interactive 3D text — letters tilt and lift based on cursor proximity.
- * Uses per-letter transforms driven by pointermove; runs on rAF for smoothness.
- * Respects prefers-reduced-motion and disables on coarse pointers.
+ * Interactive 3D text — the whole word tilts with cursor position while each
+ * letter lifts, rotates and casts a layered shadow based on cursor proximity.
+ * Runs on rAF, respects prefers-reduced-motion, and disables on coarse pointers.
  */
 export function Hero3DText({
   text,
@@ -15,6 +15,7 @@ export function Hero3DText({
   className?: string;
 }) {
   const wrapRef = useRef<HTMLHeadingElement>(null);
+  const stageRef = useRef<HTMLSpanElement>(null);
   const lettersRef = useRef<HTMLSpanElement[]>([]);
   const frame = useRef(0);
   const target = useRef({ x: 0, y: 0, active: 0 });
@@ -28,15 +29,23 @@ export function Hero3DText({
     if (frame.current) return;
     frame.current = requestAnimationFrame(() => {
       frame.current = 0;
-      // ease current toward target
       current.current.x += (target.current.x - current.current.x) * 0.15;
       current.current.y += (target.current.y - current.current.y) * 0.15;
       current.current.active +=
-        (target.current.active - current.current.active) * 0.12;
+        (target.current.active - current.current.active) * 0.1;
 
       const wrap = wrapRef.current;
-      if (!wrap) return;
+      const stage = stageRef.current;
+      if (!wrap || !stage) return;
       const rect = wrap.getBoundingClientRect();
+
+      // Global tilt of the whole word based on cursor position within the box.
+      const nx = (current.current.x / rect.width - 0.5) * 2; // -1..1
+      const ny = (current.current.y / rect.height - 0.5) * 2;
+      const gRotY = nx * 12 * current.current.active;
+      const gRotX = -ny * 8 * current.current.active;
+      stage.style.transform =
+        `rotateX(${gRotX.toFixed(2)}deg) rotateY(${gRotY.toFixed(2)}deg)`;
 
       for (const el of lettersRef.current) {
         if (!el) continue;
@@ -45,23 +54,28 @@ export function Hero3DText({
         const cy = r.top + r.height / 2 - rect.top;
         const dx = current.current.x - cx;
         const dy = current.current.y - cy;
-        // Per-letter radius keeps effect strong regardless of container size
-        const radius = Math.max(r.width, r.height) * 2.2;
+        const radius = Math.max(r.width, r.height) * 2.4;
         const dist = Math.hypot(dx, dy);
         const falloff = Math.max(0, 1 - dist / radius) * current.current.active;
 
-        // Strong, readable 3D tilt driven by cursor offset
-        const rotY = Math.max(-35, Math.min(35, (dx / (r.width * 0.6)) * 30 * falloff));
-        const rotX = Math.max(-35, Math.min(35, (-dy / (r.height * 0.6)) * 30 * falloff));
-        const tz = falloff * 90;
-        const scale = 1 + falloff * 0.12;
+        const rotY = Math.max(-40, Math.min(40, (dx / (r.width * 0.6)) * 28 * falloff));
+        const rotX = Math.max(-40, Math.min(40, (-dy / (r.height * 0.6)) * 28 * falloff));
+        const tz = falloff * 110;
+        const scale = 1 + falloff * 0.1;
 
         el.style.transform =
           `translateZ(${tz.toFixed(2)}px) ` +
           `rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) ` +
           `scale(${scale.toFixed(3)})`;
-      }
 
+        // Layered shadow gives real depth without changing the type color.
+        const sx = (-nx * 6 - dx * 0.02) * falloff;
+        const sy = (-ny * 6 - dy * 0.02) * falloff + falloff * 4;
+        const blur = 8 + falloff * 22;
+        el.style.textShadow =
+          `${(sx * 0.4).toFixed(1)}px ${(sy * 0.4).toFixed(1)}px ${(blur * 0.5).toFixed(1)}px hsl(var(--accent) / ${(0.35 * falloff).toFixed(3)}), ` +
+          `${sx.toFixed(1)}px ${sy.toFixed(1)}px ${blur.toFixed(1)}px hsl(var(--foreground) / ${(0.25 * falloff).toFixed(3)})`;
+      }
 
       if (
         Math.abs(target.current.x - current.current.x) > 0.5 ||
@@ -97,9 +111,17 @@ export function Hero3DText({
       onPointerMove={onMove}
       onPointerLeave={onLeave}
       className={className}
-      style={{ perspective: "900px", transformStyle: "preserve-3d" }}
+      style={{ perspective: "1100px", transformStyle: "preserve-3d" }}
     >
-      <span className="inline-block" style={{ transformStyle: "preserve-3d" }}>
+      <span
+        ref={stageRef}
+        className="inline-block"
+        style={{
+          transformStyle: "preserve-3d",
+          transition: "transform 200ms ease-out",
+          willChange: "transform",
+        }}
+      >
         {chars.map((c) => {
           const i = idx++;
           return (
@@ -109,26 +131,26 @@ export function Hero3DText({
               className="inline-block will-change-transform"
               style={{
                 transformStyle: "preserve-3d",
-                transition: "transform 120ms ease-out",
+                transition: "transform 140ms ease-out, text-shadow 160ms ease-out",
               }}
             >
               {c === " " ? "\u00A0" : c}
             </span>
           );
         })}
+        {accent ? (
+          <span
+            ref={(el) => setLetterRef(el, idx++)}
+            className="inline-block will-change-transform text-accent"
+            style={{
+              transformStyle: "preserve-3d",
+              transition: "transform 140ms ease-out, text-shadow 160ms ease-out",
+            }}
+          >
+            {accent}
+          </span>
+        ) : null}
       </span>
-      {accent ? (
-        <span
-          ref={(el) => setLetterRef(el, idx++)}
-          className="inline-block will-change-transform text-accent"
-          style={{
-            transformStyle: "preserve-3d",
-            transition: "transform 120ms ease-out",
-          }}
-        >
-          {accent}
-        </span>
-      ) : null}
     </h1>
   );
 }
