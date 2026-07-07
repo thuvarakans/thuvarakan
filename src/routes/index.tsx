@@ -337,10 +337,13 @@ function Work() {
               </div>
               <div className="md:col-span-7 flex flex-col justify-between">
                 <div>
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="text-xs font-mono uppercase tracking-widest text-muted-foreground">{p.cat} · {p.year}</span>
-                    <ArrowUpRight className="w-6 h-6 group-hover:rotate-45 transition-transform" />
-                  </div>
+                <div className="flex items-center justify-between mb-4">
+                  <span className="text-xs font-mono uppercase tracking-widest text-muted-foreground">{p.cat} · {p.year}</span>
+                  <button className="group/btn inline-flex items-center gap-2 bg-foreground text-background px-4 py-2 rounded-full text-xs font-medium hover:bg-accent hover:text-accent-foreground transition-colors">
+                    See Results
+                    <ArrowUpRight className="w-4 h-4 group-hover/btn:rotate-45 transition-transform" />
+                  </button>
+                </div>
                   <h3 className="text-4xl md:text-5xl font-display font-bold mb-4 leading-tight group-hover:text-accent transition-colors">{p.title}</h3>
                   <p className="text-muted-foreground max-w-xl leading-relaxed">{p.desc}</p>
                 </div>
