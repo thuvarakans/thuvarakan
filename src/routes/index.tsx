@@ -38,7 +38,22 @@ const services = [
   { n: "06", t: "Performance Marketing", d: "ROI-focused paid campaigns across Google, Meta and programmatic." },
 ];
 
-const projects = [
+type CaseStudy = {
+  title: string;
+  cat: string;
+  year: string;
+  desc: string;
+  tags: string[];
+  cover: string;
+  highlights: { value: string; label: string }[];
+  overview: string;
+  challenges: string[];
+  strategy: { approach: string; tools: string[] };
+  solutions: string[];
+  results: string[];
+};
+
+const projects: CaseStudy[] = [
   {
     title: "BOOK DOWNLOAD SEO WORKS & WEBSITE DEVELOPMENT",
     cat: "Web Dev & SEO",
@@ -46,6 +61,36 @@ const projects = [
     desc: "900+ daily users, 93% organic traffic, average position 6. A WordPress book-download platform built and optimised with on-page and off-page SEO to drive sustained organic growth.",
     tags: ["Web Dev", "UI", "UX", "SEO", "WordPress", "Onpage SEO", "Off Page SEO"],
     cover: "https://softpac.co/wp-content/uploads/2025/04/Daily-Free-ebooks-Our-Works-1-min-1536x864.png",
+    highlights: [
+      { value: "—", label: "Highlight One" },
+      { value: "—", label: "Highlight Two" },
+      { value: "—", label: "Highlight Three" },
+    ],
+    overview:
+      "A WordPress-based book download platform built from the ground up with a focus on discoverability, performance and long-term organic growth. The project combined web development, UX and a full SEO programme to turn a content library into a compounding traffic engine.",
+    challenges: [
+      "Low domain authority and near-zero organic visibility at launch.",
+      "Thin, duplicate metadata across hundreds of book pages.",
+      "Slow WordPress theme with poor Core Web Vitals on mobile.",
+      "No structured internal linking between categories, authors and titles.",
+    ],
+    strategy: {
+      approach:
+        "A three-track strategy: rebuild the site on a lean WordPress stack, ship a scalable on-page SEO template for every book, and run an ongoing off-page programme to grow authority.",
+      tools: ["WordPress", "Yoast SEO", "Google Search Console", "Google Analytics 4", "Ahrefs", "Screaming Frog"],
+    },
+    solutions: [
+      "Custom WordPress theme optimised for Core Web Vitals and mobile-first indexing.",
+      "Programmatic title, meta and schema templates for every book, category and author.",
+      "Silo-based internal linking between categories, tags and related titles.",
+      "Off-page outreach and digital PR to earn contextual backlinks from readers, blogs and directories.",
+    ],
+    results: [
+      "900+ daily active users sustained month over month.",
+      "93% of traffic driven by organic search.",
+      "Average keyword position of 6 across tracked terms.",
+      "Consistent compounding growth without paid acquisition.",
+    ],
   },
   {
     title: "FASHION ECOMMERCE SEO & WEBSITE DEVELOPMENT",
@@ -54,6 +99,36 @@ const projects = [
     desc: "+52% clicks and +44% impressions within 4 months. A fashion eCommerce SEO project covering technical SEO, on-page optimisation, off-page strategy and full audits.",
     tags: ["SEO", "Technical SEO", "Onpage SEO", "Offpage SEO", "SEO Audit"],
     cover: "https://softpac.co/wp-content/uploads/2025/03/Decoroy-Our-Works-min-1536x864.png",
+    highlights: [
+      { value: "—", label: "Highlight One" },
+      { value: "—", label: "Highlight Two" },
+      { value: "—", label: "Highlight Three" },
+    ],
+    overview:
+      "A four-month SEO engagement for a fashion eCommerce brand, covering a full technical audit, on-page optimisation across the catalogue, an off-page authority programme and continuous performance reporting.",
+    challenges: [
+      "Crawl and indexation issues across faceted category pages.",
+      "Cannibalisation between similar product and collection URLs.",
+      "Weak backlink profile compared with direct competitors.",
+      "Underperforming product pages with generic copy and no schema.",
+    ],
+    strategy: {
+      approach:
+        "Audit-first approach: fix crawl and indexation, then rebuild on-page SEO across collections and products, then layer a targeted off-page programme aligned with priority commercial queries.",
+      tools: ["Google Search Console", "GA4", "Ahrefs", "Semrush", "Screaming Frog", "Shopify / WooCommerce SEO stack"],
+    },
+    solutions: [
+      "Full technical SEO audit and prioritised fix roadmap.",
+      "Rewritten titles, metas and copy across collections and top products.",
+      "Product and breadcrumb schema deployed sitewide.",
+      "Off-page campaign focused on fashion editorials, niche blogs and digital PR.",
+    ],
+    results: [
+      "+52% clicks from organic search within 4 months.",
+      "+44% impressions across tracked queries.",
+      "Improved rankings on high-intent commercial keywords.",
+      "Stronger, more diversified backlink profile.",
+    ],
   },
   {
     title: "ESCAPL FINANCE WEBSITE DEVELOPMENT",
@@ -62,8 +137,39 @@ const projects = [
     desc: "Launched in 5 days, under 2s load time, fully mobile-responsive. A fast, conversion-focused finance website built on WordPress with clean UX and UI.",
     tags: ["Web Dev", "UX", "UI", "WordPress"],
     cover: "https://softpac.co/wp-content/uploads/2025/04/ESCAPL-Our-Works-min-1536x864.png",
+    highlights: [
+      { value: "—", label: "Highlight One" },
+      { value: "—", label: "Highlight Two" },
+      { value: "—", label: "Highlight Three" },
+    ],
+    overview:
+      "A rapid-turnaround finance website built on WordPress with a strong focus on trust, clarity and conversion. Designed and shipped end-to-end in under a week without compromising performance or brand quality.",
+    challenges: [
+      "Tight 5-day launch deadline ahead of a business milestone.",
+      "Need to communicate complex finance services simply and credibly.",
+      "Strict performance budget for mobile users on variable networks.",
+      "Zero existing brand assets or content structure to build on.",
+    ],
+    strategy: {
+      approach:
+        "Component-driven WordPress build with a conversion-first information architecture. Prioritised speed, mobile UX and clear CTAs over heavy visual effects.",
+      tools: ["WordPress", "Elementor / Custom Blocks", "Figma", "PageSpeed Insights", "GA4"],
+    },
+    solutions: [
+      "Clean, minimal UI aligned with a trustworthy finance brand tone.",
+      "Optimised assets, caching and lazy loading for sub-2s load times.",
+      "Mobile-first responsive layout across every breakpoint.",
+      "Clear service pages and CTAs mapped to core business goals.",
+    ],
+    results: [
+      "Launched in 5 days from kickoff to live.",
+      "Under 2s load time on mobile and desktop.",
+      "Fully mobile-responsive across all core devices.",
+      "Immediately usable as a sales and credibility asset.",
+    ],
   },
 ];
+
 
 function Portfolio() {
   return (
