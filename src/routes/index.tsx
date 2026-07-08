@@ -57,7 +57,7 @@ const projects = [
   },
   {
     title: "ESCAPL FINANCE WEBSITE DEVELOPMENT",
-    cat: "Website Development",
+    cat: "Web Dev",
     year: "2024",
     desc: "Launched in 5 days, under 2s load time, fully mobile-responsive. A fast, conversion-focused finance website built on WordPress with clean UX and UI.",
     tags: ["Web Dev", "UX", "UI", "WordPress"],
