@@ -38,7 +38,22 @@ const services = [
   { n: "06", t: "Performance Marketing", d: "ROI-focused paid campaigns across Google, Meta and programmatic." },
 ];
 
-const projects = [
+type CaseStudy = {
+  title: string;
+  cat: string;
+  year: string;
+  desc: string;
+  tags: string[];
+  cover: string;
+  highlights: { value: string; label: string }[];
+  overview: string;
+  challenges: string[];
+  strategy: { approach: string; tools: string[] };
+  solutions: string[];
+  results: string[];
+};
+
+const projects: CaseStudy[] = [
   {
     title: "BOOK DOWNLOAD SEO WORKS & WEBSITE DEVELOPMENT",
     cat: "Web Dev & SEO",
@@ -46,6 +61,36 @@ const projects = [
     desc: "900+ daily users, 93% organic traffic, average position 6. A WordPress book-download platform built and optimised with on-page and off-page SEO to drive sustained organic growth.",
     tags: ["Web Dev", "UI", "UX", "SEO", "WordPress", "Onpage SEO", "Off Page SEO"],
     cover: "https://softpac.co/wp-content/uploads/2025/04/Daily-Free-ebooks-Our-Works-1-min-1536x864.png",
+    highlights: [
+      { value: "—", label: "Highlight One" },
+      { value: "—", label: "Highlight Two" },
+      { value: "—", label: "Highlight Three" },
+    ],
+    overview:
+      "A WordPress-based book download platform built from the ground up with a focus on discoverability, performance and long-term organic growth. The project combined web development, UX and a full SEO programme to turn a content library into a compounding traffic engine.",
+    challenges: [
+      "Low domain authority and near-zero organic visibility at launch.",
+      "Thin, duplicate metadata across hundreds of book pages.",
+      "Slow WordPress theme with poor Core Web Vitals on mobile.",
+      "No structured internal linking between categories, authors and titles.",
+    ],
+    strategy: {
+      approach:
+        "A three-track strategy: rebuild the site on a lean WordPress stack, ship a scalable on-page SEO template for every book, and run an ongoing off-page programme to grow authority.",
+      tools: ["WordPress", "Yoast SEO", "Google Search Console", "Google Analytics 4", "Ahrefs", "Screaming Frog"],
+    },
+    solutions: [
+      "Custom WordPress theme optimised for Core Web Vitals and mobile-first indexing.",
+      "Programmatic title, meta and schema templates for every book, category and author.",
+      "Silo-based internal linking between categories, tags and related titles.",
+      "Off-page outreach and digital PR to earn contextual backlinks from readers, blogs and directories.",
+    ],
+    results: [
+      "900+ daily active users sustained month over month.",
+      "93% of traffic driven by organic search.",
+      "Average keyword position of 6 across tracked terms.",
+      "Consistent compounding growth without paid acquisition.",
+    ],
   },
   {
     title: "FASHION ECOMMERCE SEO & WEBSITE DEVELOPMENT",
@@ -54,6 +99,36 @@ const projects = [
     desc: "+52% clicks and +44% impressions within 4 months. A fashion eCommerce SEO project covering technical SEO, on-page optimisation, off-page strategy and full audits.",
     tags: ["SEO", "Technical SEO", "Onpage SEO", "Offpage SEO", "SEO Audit"],
     cover: "https://softpac.co/wp-content/uploads/2025/03/Decoroy-Our-Works-min-1536x864.png",
+    highlights: [
+      { value: "—", label: "Highlight One" },
+      { value: "—", label: "Highlight Two" },
+      { value: "—", label: "Highlight Three" },
+    ],
+    overview:
+      "A four-month SEO engagement for a fashion eCommerce brand, covering a full technical audit, on-page optimisation across the catalogue, an off-page authority programme and continuous performance reporting.",
+    challenges: [
+      "Crawl and indexation issues across faceted category pages.",
+      "Cannibalisation between similar product and collection URLs.",
+      "Weak backlink profile compared with direct competitors.",
+      "Underperforming product pages with generic copy and no schema.",
+    ],
+    strategy: {
+      approach:
+        "Audit-first approach: fix crawl and indexation, then rebuild on-page SEO across collections and products, then layer a targeted off-page programme aligned with priority commercial queries.",
+      tools: ["Google Search Console", "GA4", "Ahrefs", "Semrush", "Screaming Frog", "Shopify / WooCommerce SEO stack"],
+    },
+    solutions: [
+      "Full technical SEO audit and prioritised fix roadmap.",
+      "Rewritten titles, metas and copy across collections and top products.",
+      "Product and breadcrumb schema deployed sitewide.",
+      "Off-page campaign focused on fashion editorials, niche blogs and digital PR.",
+    ],
+    results: [
+      "+52% clicks from organic search within 4 months.",
+      "+44% impressions across tracked queries.",
+      "Improved rankings on high-intent commercial keywords.",
+      "Stronger, more diversified backlink profile.",
+    ],
   },
   {
     title: "ESCAPL FINANCE WEBSITE DEVELOPMENT",
@@ -62,8 +137,39 @@ const projects = [
     desc: "Launched in 5 days, under 2s load time, fully mobile-responsive. A fast, conversion-focused finance website built on WordPress with clean UX and UI.",
     tags: ["Web Dev", "UX", "UI", "WordPress"],
     cover: "https://softpac.co/wp-content/uploads/2025/04/ESCAPL-Our-Works-min-1536x864.png",
+    highlights: [
+      { value: "—", label: "Highlight One" },
+      { value: "—", label: "Highlight Two" },
+      { value: "—", label: "Highlight Three" },
+    ],
+    overview:
+      "A rapid-turnaround finance website built on WordPress with a strong focus on trust, clarity and conversion. Designed and shipped end-to-end in under a week without compromising performance or brand quality.",
+    challenges: [
+      "Tight 5-day launch deadline ahead of a business milestone.",
+      "Need to communicate complex finance services simply and credibly.",
+      "Strict performance budget for mobile users on variable networks.",
+      "Zero existing brand assets or content structure to build on.",
+    ],
+    strategy: {
+      approach:
+        "Component-driven WordPress build with a conversion-first information architecture. Prioritised speed, mobile UX and clear CTAs over heavy visual effects.",
+      tools: ["WordPress", "Elementor / Custom Blocks", "Figma", "PageSpeed Insights", "GA4"],
+    },
+    solutions: [
+      "Clean, minimal UI aligned with a trustworthy finance brand tone.",
+      "Optimised assets, caching and lazy loading for sub-2s load times.",
+      "Mobile-first responsive layout across every breakpoint.",
+      "Clear service pages and CTAs mapped to core business goals.",
+    ],
+    results: [
+      "Launched in 5 days from kickoff to live.",
+      "Under 2s load time on mobile and desktop.",
+      "Fully mobile-responsive across all core devices.",
+      "Immediately usable as a sales and credibility asset.",
+    ],
   },
 ];
+
 
 function Portfolio() {
   return (
@@ -315,7 +421,7 @@ function Services() {
 }
 
 function Work() {
-  const [popupOpen, setPopupOpen] = useState(false);
+  const [active, setActive] = useState<CaseStudy | null>(null);
 
   return (
     <section id="work" className="px-6 md:px-10 py-24 md:py-32">
@@ -342,7 +448,7 @@ function Work() {
                   <div className="flex items-center justify-between mb-4">
                     <span className="text-xs font-mono uppercase tracking-widest text-muted-foreground">{p.cat} · {p.year}</span>
                     <button
-                      onClick={() => setPopupOpen(true)}
+                      onClick={() => setActive(p)}
                       className="group/btn inline-flex items-center gap-2 bg-foreground text-background px-4 py-2 rounded-full text-xs font-medium hover:bg-accent hover:text-accent-foreground transition-colors"
                     >
                       See Results
@@ -363,35 +469,160 @@ function Work() {
         </div>
       </div>
 
-      {popupOpen && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-background/80 backdrop-blur-md p-6"
-          onClick={() => setPopupOpen(false)}
-          role="dialog"
-          aria-modal="true"
-        >
-          <div
-            className="relative w-full max-w-4xl rounded-3xl border border-border bg-card p-12 md:p-20 shadow-2xl"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button
-              onClick={() => setPopupOpen(false)}
-              className="absolute top-6 right-6 p-3 rounded-full border border-border hover:bg-foreground hover:text-background transition-colors"
-              aria-label="Close"
-            >
-              <X className="w-5 h-5" />
-            </button>
-            <div className="text-center">
-              <span className="text-xs font-mono uppercase tracking-widest text-muted-foreground">Case Study</span>
-              <h3 className="mt-4 text-5xl md:text-7xl font-display font-bold">Coming Soon</h3>
-              <p className="mt-6 text-muted-foreground max-w-lg mx-auto">Detailed results, metrics and process breakdowns are being prepared for this project.</p>
-            </div>
-          </div>
-        </div>
-      )}
+      {active && <CaseStudyModal study={active} onClose={() => setActive(null)} />}
     </section>
   );
 }
+
+function CaseStudyModal({ study, onClose }: { study: CaseStudy; onClose: () => void }) {
+  return (
+    <div
+      className="fixed inset-0 z-50 overflow-y-auto bg-background/85 backdrop-blur-md"
+      onClick={onClose}
+      role="dialog"
+      aria-modal="true"
+    >
+      <div className="min-h-full flex items-start justify-center p-4 md:p-8">
+        <div
+          className="relative w-full max-w-5xl rounded-3xl border border-border bg-card shadow-2xl overflow-hidden"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <button
+            onClick={onClose}
+            className="fixed md:absolute top-6 right-6 z-10 p-3 rounded-full border border-border bg-card hover:bg-foreground hover:text-background transition-colors"
+            aria-label="Close"
+          >
+            <X className="w-5 h-5" />
+          </button>
+
+          {/* Cover */}
+          <div className="relative aspect-[16/7] w-full bg-secondary overflow-hidden">
+            <img src={study.cover} alt={study.title} className="absolute inset-0 w-full h-full object-cover" />
+            <div className="absolute inset-0 bg-gradient-to-t from-card via-card/40 to-transparent" />
+          </div>
+
+          <div className="p-6 md:p-14 space-y-14">
+            {/* Header */}
+            <header>
+              <div className="flex flex-wrap items-center gap-3 text-xs font-mono uppercase tracking-widest text-muted-foreground mb-6">
+                <span className="text-accent">Case Study</span>
+                <span>——</span>
+                <span>{study.cat} · {study.year}</span>
+              </div>
+              <h2 className="text-3xl md:text-5xl font-display font-bold leading-tight">
+                {study.title}
+              </h2>
+              <div className="mt-6 flex flex-wrap gap-2">
+                {study.tags.map((t) => (
+                  <span key={t} className="px-3 py-1 text-xs border border-border rounded-full">{t}</span>
+                ))}
+              </div>
+            </header>
+
+            {/* Highlights */}
+            <section>
+              <SubLabel n="01" label="Highlights" />
+              <div className="grid sm:grid-cols-3 gap-4">
+                {study.highlights.map((h, i) => (
+                  <div key={i} className="p-6 rounded-2xl border border-border bg-background">
+                    <div className="text-4xl md:text-5xl font-display font-bold text-accent leading-none">{h.value}</div>
+                    <div className="mt-3 text-sm text-muted-foreground uppercase tracking-widest font-mono">{h.label}</div>
+                  </div>
+                ))}
+              </div>
+            </section>
+
+            {/* Overview */}
+            <section className="grid md:grid-cols-12 gap-6">
+              <div className="md:col-span-4"><SubLabel n="02" label="Overview" /></div>
+              <p className="md:col-span-8 text-lg leading-relaxed text-muted-foreground">{study.overview}</p>
+            </section>
+
+            {/* Challenges */}
+            <section className="grid md:grid-cols-12 gap-6">
+              <div className="md:col-span-4"><SubLabel n="03" label="Challenges" /></div>
+              <ul className="md:col-span-8 space-y-3">
+                {study.challenges.map((c, i) => (
+                  <li key={i} className="flex gap-3 text-base leading-relaxed">
+                    <span className="mt-2 w-1.5 h-1.5 rounded-full bg-accent shrink-0" />
+                    <span>{c}</span>
+                  </li>
+                ))}
+              </ul>
+            </section>
+
+            {/* Strategy & Tools */}
+            <section className="grid md:grid-cols-12 gap-6">
+              <div className="md:col-span-4"><SubLabel n="04" label="Strategy & Tools" /></div>
+              <div className="md:col-span-8 space-y-6">
+                <p className="text-base leading-relaxed text-muted-foreground">{study.strategy.approach}</p>
+                <div className="flex flex-wrap gap-2">
+                  {study.strategy.tools.map((t) => (
+                    <span key={t} className="px-3 py-1 text-xs font-mono border border-border rounded-full bg-background">{t}</span>
+                  ))}
+                </div>
+              </div>
+            </section>
+
+            {/* Solutions */}
+            <section className="grid md:grid-cols-12 gap-6">
+              <div className="md:col-span-4"><SubLabel n="05" label="Solutions" /></div>
+              <ul className="md:col-span-8 space-y-3">
+                {study.solutions.map((s, i) => (
+                  <li key={i} className="flex gap-3 text-base leading-relaxed">
+                    <span className="mt-2 w-1.5 h-1.5 rounded-full bg-accent shrink-0" />
+                    <span>{s}</span>
+                  </li>
+                ))}
+              </ul>
+            </section>
+
+            {/* Results */}
+            <section className="grid md:grid-cols-12 gap-6">
+              <div className="md:col-span-4"><SubLabel n="06" label="Results" /></div>
+              <ul className="md:col-span-8 space-y-3">
+                {study.results.map((r, i) => (
+                  <li key={i} className="flex gap-3 text-base leading-relaxed">
+                    <span className="mt-2 w-1.5 h-1.5 rounded-full bg-accent shrink-0" />
+                    <span>{r}</span>
+                  </li>
+                ))}
+              </ul>
+            </section>
+
+            {/* CTA */}
+            <section className="rounded-3xl border border-border bg-background p-8 md:p-12 text-center">
+              <h3 className="text-3xl md:text-4xl font-display font-bold leading-tight">
+                Want results like this for <span className="text-accent italic">your brand?</span>
+              </h3>
+              <p className="mt-4 text-muted-foreground max-w-xl mx-auto">
+                Let's talk about your goals and how we can turn them into a measurable growth story.
+              </p>
+              <a
+                href="#contact"
+                onClick={onClose}
+                className="mt-8 group inline-flex items-center gap-3 bg-foreground text-background px-6 py-4 rounded-full text-sm font-medium hover:bg-accent hover:text-accent-foreground transition-colors"
+              >
+                Contact Us
+                <ArrowUpRight className="w-4 h-4 group-hover:rotate-45 transition-transform" />
+              </a>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function SubLabel({ n, label }: { n: string; label: string }) {
+  return (
+    <div className="flex items-center gap-3 text-xs font-mono uppercase tracking-widest text-muted-foreground mb-4">
+      <span className="text-accent">({n})</span>
+      <span>—— {label}</span>
+    </div>
+  );
+}
+
 
 function Contact() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
