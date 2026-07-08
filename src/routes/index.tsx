@@ -421,7 +421,7 @@ function Services() {
 }
 
 function Work() {
-  const [popupOpen, setPopupOpen] = useState(false);
+  const [active, setActive] = useState<CaseStudy | null>(null);
 
   return (
     <section id="work" className="px-6 md:px-10 py-24 md:py-32">
@@ -448,7 +448,7 @@ function Work() {
                   <div className="flex items-center justify-between mb-4">
                     <span className="text-xs font-mono uppercase tracking-widest text-muted-foreground">{p.cat} · {p.year}</span>
                     <button
-                      onClick={() => setPopupOpen(true)}
+                      onClick={() => setActive(p)}
                       className="group/btn inline-flex items-center gap-2 bg-foreground text-background px-4 py-2 rounded-full text-xs font-medium hover:bg-accent hover:text-accent-foreground transition-colors"
                     >
                       See Results
@@ -469,35 +469,160 @@ function Work() {
         </div>
       </div>
 
-      {popupOpen && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-background/80 backdrop-blur-md p-6"
-          onClick={() => setPopupOpen(false)}
-          role="dialog"
-          aria-modal="true"
-        >
-          <div
-            className="relative w-full max-w-4xl rounded-3xl border border-border bg-card p-12 md:p-20 shadow-2xl"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button
-              onClick={() => setPopupOpen(false)}
-              className="absolute top-6 right-6 p-3 rounded-full border border-border hover:bg-foreground hover:text-background transition-colors"
-              aria-label="Close"
-            >
-              <X className="w-5 h-5" />
-            </button>
-            <div className="text-center">
-              <span className="text-xs font-mono uppercase tracking-widest text-muted-foreground">Case Study</span>
-              <h3 className="mt-4 text-5xl md:text-7xl font-display font-bold">Coming Soon</h3>
-              <p className="mt-6 text-muted-foreground max-w-lg mx-auto">Detailed results, metrics and process breakdowns are being prepared for this project.</p>
-            </div>
-          </div>
-        </div>
-      )}
+      {active && <CaseStudyModal study={active} onClose={() => setActive(null)} />}
     </section>
   );
 }
+
+function CaseStudyModal({ study, onClose }: { study: CaseStudy; onClose: () => void }) {
+  return (
+    <div
+      className="fixed inset-0 z-50 overflow-y-auto bg-background/85 backdrop-blur-md"
+      onClick={onClose}
+      role="dialog"
+      aria-modal="true"
+    >
+      <div className="min-h-full flex items-start justify-center p-4 md:p-8">
+        <div
+          className="relative w-full max-w-5xl rounded-3xl border border-border bg-card shadow-2xl overflow-hidden"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <button
+            onClick={onClose}
+            className="fixed md:absolute top-6 right-6 z-10 p-3 rounded-full border border-border bg-card hover:bg-foreground hover:text-background transition-colors"
+            aria-label="Close"
+          >
+            <X className="w-5 h-5" />
+          </button>
+
+          {/* Cover */}
+          <div className="relative aspect-[16/7] w-full bg-secondary overflow-hidden">
+            <img src={study.cover} alt={study.title} className="absolute inset-0 w-full h-full object-cover" />
+            <div className="absolute inset-0 bg-gradient-to-t from-card via-card/40 to-transparent" />
+          </div>
+
+          <div className="p-6 md:p-14 space-y-14">
+            {/* Header */}
+            <header>
+              <div className="flex flex-wrap items-center gap-3 text-xs font-mono uppercase tracking-widest text-muted-foreground mb-6">
+                <span className="text-accent">Case Study</span>
+                <span>——</span>
+                <span>{study.cat} · {study.year}</span>
+              </div>
+              <h2 className="text-3xl md:text-5xl font-display font-bold leading-tight">
+                {study.title}
+              </h2>
+              <div className="mt-6 flex flex-wrap gap-2">
+                {study.tags.map((t) => (
+                  <span key={t} className="px-3 py-1 text-xs border border-border rounded-full">{t}</span>
+                ))}
+              </div>
+            </header>
+
+            {/* Highlights */}
+            <section>
+              <SubLabel n="01" label="Highlights" />
+              <div className="grid sm:grid-cols-3 gap-4">
+                {study.highlights.map((h, i) => (
+                  <div key={i} className="p-6 rounded-2xl border border-border bg-background">
+                    <div className="text-4xl md:text-5xl font-display font-bold text-accent leading-none">{h.value}</div>
+                    <div className="mt-3 text-sm text-muted-foreground uppercase tracking-widest font-mono">{h.label}</div>
+                  </div>
+                ))}
+              </div>
+            </section>
+
+            {/* Overview */}
+            <section className="grid md:grid-cols-12 gap-6">
+              <div className="md:col-span-4"><SubLabel n="02" label="Overview" /></div>
+              <p className="md:col-span-8 text-lg leading-relaxed text-muted-foreground">{study.overview}</p>
+            </section>
+
+            {/* Challenges */}
+            <section className="grid md:grid-cols-12 gap-6">
+              <div className="md:col-span-4"><SubLabel n="03" label="Challenges" /></div>
+              <ul className="md:col-span-8 space-y-3">
+                {study.challenges.map((c, i) => (
+                  <li key={i} className="flex gap-3 text-base leading-relaxed">
+                    <span className="mt-2 w-1.5 h-1.5 rounded-full bg-accent shrink-0" />
+                    <span>{c}</span>
+                  </li>
+                ))}
+              </ul>
+            </section>
+
+            {/* Strategy & Tools */}
+            <section className="grid md:grid-cols-12 gap-6">
+              <div className="md:col-span-4"><SubLabel n="04" label="Strategy & Tools" /></div>
+              <div className="md:col-span-8 space-y-6">
+                <p className="text-base leading-relaxed text-muted-foreground">{study.strategy.approach}</p>
+                <div className="flex flex-wrap gap-2">
+                  {study.strategy.tools.map((t) => (
+                    <span key={t} className="px-3 py-1 text-xs font-mono border border-border rounded-full bg-background">{t}</span>
+                  ))}
+                </div>
+              </div>
+            </section>
+
+            {/* Solutions */}
+            <section className="grid md:grid-cols-12 gap-6">
+              <div className="md:col-span-4"><SubLabel n="05" label="Solutions" /></div>
+              <ul className="md:col-span-8 space-y-3">
+                {study.solutions.map((s, i) => (
+                  <li key={i} className="flex gap-3 text-base leading-relaxed">
+                    <span className="mt-2 w-1.5 h-1.5 rounded-full bg-accent shrink-0" />
+                    <span>{s}</span>
+                  </li>
+                ))}
+              </ul>
+            </section>
+
+            {/* Results */}
+            <section className="grid md:grid-cols-12 gap-6">
+              <div className="md:col-span-4"><SubLabel n="06" label="Results" /></div>
+              <ul className="md:col-span-8 space-y-3">
+                {study.results.map((r, i) => (
+                  <li key={i} className="flex gap-3 text-base leading-relaxed">
+                    <span className="mt-2 w-1.5 h-1.5 rounded-full bg-accent shrink-0" />
+                    <span>{r}</span>
+                  </li>
+                ))}
+              </ul>
+            </section>
+
+            {/* CTA */}
+            <section className="rounded-3xl border border-border bg-background p-8 md:p-12 text-center">
+              <h3 className="text-3xl md:text-4xl font-display font-bold leading-tight">
+                Want results like this for <span className="text-accent italic">your brand?</span>
+              </h3>
+              <p className="mt-4 text-muted-foreground max-w-xl mx-auto">
+                Let's talk about your goals and how we can turn them into a measurable growth story.
+              </p>
+              <a
+                href="#contact"
+                onClick={onClose}
+                className="mt-8 group inline-flex items-center gap-3 bg-foreground text-background px-6 py-4 rounded-full text-sm font-medium hover:bg-accent hover:text-accent-foreground transition-colors"
+              >
+                Contact Us
+                <ArrowUpRight className="w-4 h-4 group-hover:rotate-45 transition-transform" />
+              </a>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function SubLabel({ n, label }: { n: string; label: string }) {
+  return (
+    <div className="flex items-center gap-3 text-xs font-mono uppercase tracking-widest text-muted-foreground mb-4">
+      <span className="text-accent">({n})</span>
+      <span>—— {label}</span>
+    </div>
+  );
+}
+
 
 function Contact() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
