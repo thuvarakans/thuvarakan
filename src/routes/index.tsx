@@ -539,11 +539,8 @@ function CaseStudyModal({ study, onClose }: { study: CaseStudy; onClose: () => v
             <X className="w-5 h-5" />
           </button>
 
-          {/* Cover */}
-          <div className="relative aspect-[16/7] w-full bg-secondary overflow-hidden">
-            <img src={study.cover} alt={study.title} className="absolute inset-0 w-full h-full object-cover" />
-            <div className="absolute inset-0 bg-gradient-to-t from-card via-card/40 to-transparent" />
-          </div>
+
+
 
           <div className="p-6 md:p-14 space-y-14">
             {/* Header */}
