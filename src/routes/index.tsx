@@ -621,15 +621,35 @@ function CaseStudyModal({ study, onClose }: { study: CaseStudy; onClose: () => v
             {/* Results */}
             <section className="grid md:grid-cols-12 gap-6">
               <div className="md:col-span-4"><SubLabel n="06" label="Results" /></div>
-              <ul className="md:col-span-8 space-y-3">
-                {study.results.map((r, i) => (
-                  <li key={i} className="flex gap-3 text-base leading-relaxed">
-                    <span className="mt-2 w-1.5 h-1.5 rounded-full bg-accent shrink-0" />
-                    <span>{r}</span>
-                  </li>
-                ))}
-              </ul>
+              <div className="md:col-span-8 space-y-8">
+                <ul className="space-y-3">
+                  {study.results.map((r, i) => (
+                    <li key={i} className="flex gap-3 text-base leading-relaxed">
+                      <span className="mt-2 w-1.5 h-1.5 rounded-full bg-accent shrink-0" />
+                      <span>{r}</span>
+                    </li>
+                  ))}
+                </ul>
+                {study.resultImages && study.resultImages.length > 0 && (
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    {study.resultImages.map((img, i) => (
+                      <figure key={i} className="rounded-2xl border border-border bg-background overflow-hidden">
+                        <img
+                          src={img.url}
+                          alt={img.caption}
+                          loading="lazy"
+                          className="w-full h-auto object-contain bg-background"
+                        />
+                        <figcaption className="px-4 py-3 text-xs font-mono uppercase tracking-widest text-muted-foreground border-t border-border">
+                          {img.caption}
+                        </figcaption>
+                      </figure>
+                    ))}
+                  </div>
+                )}
+              </div>
             </section>
+
 
             {/* CTA */}
             <section className="rounded-3xl border border-border bg-background p-8 md:p-12 text-center">
