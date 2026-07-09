@@ -51,6 +51,7 @@ type CaseStudy = {
   strategy: { approach: string; tools: string[] };
   solutions: string[];
   results: string[];
+  resultImages?: { url: string; caption: string }[];
 };
 
 const projects: CaseStudy[] = [
@@ -62,34 +63,56 @@ const projects: CaseStudy[] = [
     tags: ["Web Dev", "UI", "UX", "SEO", "WordPress", "Onpage SEO", "Off Page SEO"],
     cover: "https://softpac.co/wp-content/uploads/2025/04/Daily-Free-ebooks-Our-Works-1-min-1536x864.png",
     highlights: [
-      { value: "—", label: "Highlight One" },
-      { value: "—", label: "Highlight Two" },
-      { value: "—", label: "Highlight Three" },
+      { value: "900+", label: "Daily Users" },
+      { value: "93%", label: "Organic Traffic" },
+      { value: "6", label: "Avg. Position" },
     ],
     overview:
-      "A WordPress-based book download platform built from the ground up with a focus on discoverability, performance and long-term organic growth. The project combined web development, UX and a full SEO programme to turn a content library into a compounding traffic engine.",
+      "Built a WordPress-based public-domain, copyright-free book download platform from the ground up with a strong focus on organic growth, user experience and website performance. The project combined custom web development, SEO and content strategy to transform a new website into a scalable, search-driven content platform.",
     challenges: [
-      "Low domain authority and near-zero organic visibility at launch.",
-      "Thin, duplicate metadata across hundreds of book pages.",
-      "Slow WordPress theme with poor Core Web Vitals on mobile.",
-      "No structured internal linking between categories, authors and titles.",
+      "Launched with zero domain authority and almost no organic search visibility.",
+      "Highly competitive niche with many established book download websites.",
+      "No existing brand recognition or user trust.",
+      "Limited content during the initial launch phase, making it difficult to attract search traffic.",
     ],
     strategy: {
       approach:
-        "A three-track strategy: rebuild the site on a lean WordPress stack, ship a scalable on-page SEO template for every book, and run an ongoing off-page programme to grow authority.",
-      tools: ["WordPress", "Yoast SEO", "Google Search Console", "Google Analytics 4", "Ahrefs", "Screaming Frog"],
+        "Prioritised a fast, mobile-friendly and user-focused experience across all devices. Identified high-demand book topics with lower competition to capture underserved search intent, then executed a long-term content and SEO roadmap covering technical SEO, on-page optimisation and authority building — with a strong focus on returning-visitor retention.",
+      tools: [
+        "WordPress",
+        "Yoast SEO",
+        "Google Search Console",
+        "Google Analytics 4",
+        "Ahrefs",
+        "Screaming Frog SEO Spider",
+        "Google Trends",
+        "Google Keyword Planner",
+        "GTmetrix",
+        "ChatGPT",
+      ],
     },
     solutions: [
-      "Custom WordPress theme optimised for Core Web Vitals and mobile-first indexing.",
-      "Programmatic title, meta and schema templates for every book, category and author.",
-      "Silo-based internal linking between categories, tags and related titles.",
-      "Off-page outreach and digital PR to earn contextual backlinks from readers, blogs and directories.",
+      "Created a data-driven book selection framework based on search demand, user interest and market gaps.",
+      "Performed keyword research for every content page and optimised content following SEO best practices.",
+      "Implemented a Progressive Web App (PWA) with user accounts and personalised email notifications to improve retention and repeat visits.",
+      "Optimised images, removed unnecessary code and improved Core Web Vitals to enhance site speed and overall performance.",
+      "Built high-quality backlinks to strengthen domain authority and improve search rankings over time.",
     ],
     results: [
       "900+ daily active users sustained month over month.",
       "93% of traffic driven by organic search.",
       "Average keyword position of 6 across tracked terms.",
       "Consistent compounding growth without paid acquisition.",
+    ],
+    resultImages: [
+      {
+        url: "https://res.cloudinary.com/pftp95tf/image/upload/v1783483298/Screenshot_2026-05-12_141533_tdxlvd.png",
+        caption: "Google Analytics screenshot",
+      },
+      {
+        url: "https://res.cloudinary.com/pftp95tf/image/upload/v1783483299/Screenshot_2026-05-12_141927_iqymxu.png",
+        caption: "Google Analytics — first user primary channel group",
+      },
     ],
   },
   {
@@ -100,34 +123,55 @@ const projects: CaseStudy[] = [
     tags: ["SEO", "Technical SEO", "Onpage SEO", "Offpage SEO", "SEO Audit"],
     cover: "https://softpac.co/wp-content/uploads/2025/03/Decoroy-Our-Works-min-1536x864.png",
     highlights: [
-      { value: "—", label: "Highlight One" },
-      { value: "—", label: "Highlight Two" },
-      { value: "—", label: "Highlight Three" },
+      { value: "+52%", label: "Clicks" },
+      { value: "+44%", label: "Impressions" },
+      { value: "4 mo", label: "Timeframe" },
     ],
     overview:
-      "A four-month SEO engagement for a fashion eCommerce brand, covering a full technical audit, on-page optimisation across the catalogue, an off-page authority programme and continuous performance reporting.",
+      "A four-month SEO engagement for a fashion eCommerce brand focused on improving organic visibility, technical performance, user experience and conversion rates. The project combined technical SEO, on-page optimisation, UX improvements, authority building and ongoing performance reporting to drive sustainable growth.",
     challenges: [
       "Crawl and indexation issues across faceted category pages.",
-      "Cannibalisation between similar product and collection URLs.",
-      "Weak backlink profile compared with direct competitors.",
-      "Underperforming product pages with generic copy and no schema.",
+      "Low domain authority and minimal organic search visibility.",
+      "Slow website performance and poor Core Web Vitals.",
+      "Weak backlink profile compared to key competitors.",
+      "Poor UI/UX, particularly on the homepage and product pages.",
+      "Ineffective keyword targeting across product pages.",
+      "Product information was difficult to understand, reducing user engagement and purchase confidence.",
     ],
     strategy: {
       approach:
-        "Audit-first approach: fix crawl and indexation, then rebuild on-page SEO across collections and products, then layer a targeted off-page programme aligned with priority commercial queries.",
-      tools: ["Google Search Console", "GA4", "Ahrefs", "Semrush", "Screaming Frog", "Shopify / WooCommerce SEO stack"],
+        "Resolved technical SEO issues affecting crawlability and indexation, improved website speed and Core Web Vitals, and redesigned key pages to enhance UX and conversions. Developed a keyword strategy targeting high-intent and long-tail search terms, strengthened domain authority through a high-quality backlink programme, and enhanced product content with an ongoing customer review strategy.",
+      tools: [
+        "Google Search Console",
+        "Google Analytics 4",
+        "Semrush",
+        "Screaming Frog",
+        "Google Keyword Planner",
+        "GTmetrix",
+        "Google Merchant Center",
+        "WooCommerce",
+        "ChatGPT",
+      ],
     },
     solutions: [
-      "Full technical SEO audit and prioritised fix roadmap.",
-      "Rewritten titles, metas and copy across collections and top products.",
-      "Product and breadcrumb schema deployed sitewide.",
-      "Off-page campaign focused on fashion editorials, niche blogs and digital PR.",
+      "Improved website performance by optimising images, replacing the homepage video with lightweight imagery and removing unnecessary JavaScript.",
+      "Redesigned the homepage and product page template to improve usability and present product information more clearly.",
+      "Added customer reviews, Google Business Profile reviews, product usage images and product sales indicators to increase trust and conversion rates.",
+      "Optimised product titles, URLs, descriptions and on-page content using relevant long-tail keywords.",
+      "Built high-quality backlinks from relevant and authoritative websites.",
+      "Implemented an automated post-purchase email system to encourage customers to leave product reviews.",
     ],
     results: [
       "+52% clicks from organic search within 4 months.",
       "+44% impressions across tracked queries.",
       "Improved rankings on high-intent commercial keywords.",
       "Stronger, more diversified backlink profile.",
+    ],
+    resultImages: [
+      {
+        url: "https://res.cloudinary.com/pftp95tf/image/upload/v1783484516/Ecoagri-28_days-Photoroom_ej2atl.png",
+        caption: "Google Search Console screenshot",
+      },
     ],
   },
   {
@@ -495,11 +539,8 @@ function CaseStudyModal({ study, onClose }: { study: CaseStudy; onClose: () => v
             <X className="w-5 h-5" />
           </button>
 
-          {/* Cover */}
-          <div className="relative aspect-[16/7] w-full bg-secondary overflow-hidden">
-            <img src={study.cover} alt={study.title} className="absolute inset-0 w-full h-full object-cover" />
-            <div className="absolute inset-0 bg-gradient-to-t from-card via-card/40 to-transparent" />
-          </div>
+
+
 
           <div className="p-6 md:p-14 space-y-14">
             {/* Header */}
@@ -580,15 +621,35 @@ function CaseStudyModal({ study, onClose }: { study: CaseStudy; onClose: () => v
             {/* Results */}
             <section className="grid md:grid-cols-12 gap-6">
               <div className="md:col-span-4"><SubLabel n="06" label="Results" /></div>
-              <ul className="md:col-span-8 space-y-3">
-                {study.results.map((r, i) => (
-                  <li key={i} className="flex gap-3 text-base leading-relaxed">
-                    <span className="mt-2 w-1.5 h-1.5 rounded-full bg-accent shrink-0" />
-                    <span>{r}</span>
-                  </li>
-                ))}
-              </ul>
+              <div className="md:col-span-8 space-y-8">
+                <ul className="space-y-3">
+                  {study.results.map((r, i) => (
+                    <li key={i} className="flex gap-3 text-base leading-relaxed">
+                      <span className="mt-2 w-1.5 h-1.5 rounded-full bg-accent shrink-0" />
+                      <span>{r}</span>
+                    </li>
+                  ))}
+                </ul>
+                {study.resultImages && study.resultImages.length > 0 && (
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    {study.resultImages.map((img, i) => (
+                      <figure key={i} className="rounded-2xl border border-border bg-background overflow-hidden">
+                        <img
+                          src={img.url}
+                          alt={img.caption}
+                          loading="lazy"
+                          className="w-full h-auto object-contain bg-background"
+                        />
+                        <figcaption className="px-4 py-3 text-xs font-mono uppercase tracking-widest text-muted-foreground border-t border-border">
+                          {img.caption}
+                        </figcaption>
+                      </figure>
+                    ))}
+                  </div>
+                )}
+              </div>
             </section>
+
 
             {/* CTA */}
             <section className="rounded-3xl border border-border bg-background p-8 md:p-12 text-center">
