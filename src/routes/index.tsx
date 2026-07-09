@@ -182,10 +182,11 @@ const projects: CaseStudy[] = [
     tags: ["Web Dev", "UX", "UI", "WordPress"],
     cover: "https://softpac.co/wp-content/uploads/2025/04/ESCAPL-Our-Works-min-1536x864.png",
     highlights: [
-      { value: "—", label: "Highlight One" },
-      { value: "—", label: "Highlight Two" },
-      { value: "—", label: "Highlight Three" },
+      { value: "5 Days", label: "Launch Time" },
+      { value: "<2s", label: "Load Time" },
+      { value: "100%", label: "Mobile Responsive" },
     ],
+
     overview:
       "A rapid-turnaround finance website built on WordPress with a strong focus on trust, clarity and conversion. Designed and shipped end-to-end in under a week without compromising performance or brand quality.",
     challenges: [
