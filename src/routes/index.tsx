@@ -632,7 +632,7 @@ function CaseStudyModal({ study, onClose }: { study: CaseStudy; onClose: () => v
                   ))}
                 </ul>
                 {study.resultImages && study.resultImages.length > 0 && (
-                  <div className="grid sm:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 gap-6">
                     {study.resultImages.map((img, i) => (
                       <figure key={i} className="rounded-2xl border border-border bg-background overflow-hidden">
                         <img
@@ -641,7 +641,7 @@ function CaseStudyModal({ study, onClose }: { study: CaseStudy; onClose: () => v
                           loading="lazy"
                           className="w-full h-auto object-contain bg-background"
                         />
-                        <figcaption className="px-4 py-3 text-xs font-mono uppercase tracking-widest text-muted-foreground border-t border-border">
+                        <figcaption className="px-4 py-3 text-sm font-mono uppercase tracking-widest text-muted-foreground border-t border-border">
                           {img.caption}
                         </figcaption>
                       </figure>
