@@ -268,10 +268,10 @@ function Hero() {
             <div>Portfolio / 2026</div>
             <div>Colombo → Worldwide</div>
           </div>
-        <!-- <div className="text-right hidden md:block">
+          <div className="text-right hidden md:block">
             <div className="text-5xl md:text-6xl font-display font-bold leading-none">120<span className="text-accent">+</span></div>
             <div className="text-xs text-muted-foreground mt-2 uppercase tracking-widest">campaigns shipped</div>
-          </div> -->
+          </div> 
         
         </div>
 
